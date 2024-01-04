@@ -23,7 +23,13 @@ mongoose
 // middlewares
 app.use(express.json({ limit: "4mb" }));
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+const corsOptions = {
+  origin: 'https://lusarscape.vercel.app',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,  // Enable CORS credentials if needed (cookies, authentication headers, etc.)
+  optionsSuccessStatus: 204,  // Respond with 204 No Content for preflight requests
+};
+app.use(cors(corsOptions));
 app.use(morgan("dev"));
 
 // route middlewares
